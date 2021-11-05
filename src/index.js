@@ -1,8 +1,3 @@
-// https://github.com/nodeca/js-yaml
-const yaml = require('js-yaml');
-const fs   = require('fs');
-
-
 const core = require('@actions/core');
 const github = require('@actions/github');
 
