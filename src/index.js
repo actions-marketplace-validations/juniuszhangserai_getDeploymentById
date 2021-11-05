@@ -36,6 +36,10 @@ else
    envName = core.getInput('environment');
 }
 
+let owner = "";
+owner = core.getInput('owner');
+let repo = "";
+repo = core.getInput('repo');
 
 async function listDeployments(reSha) 
 {
@@ -45,14 +49,14 @@ async function listDeployments(reSha)
   // https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#about-the-github_token-secret
   //const myToken = core.getInput('myToken');
 
-  const octokit = github.getOctokit(myToken)
+  const octokit = github.getOctokit(myToken,owner,repo)
 
   try
   {
   //Check if milestone exists
     const { data: deployments } = await octokit.repos.listDeployments({
-    owner: github.context.owner,
-    repo: github.context.repo,
+    owner: owner,
+    repo: repo,
     sha: reSha
     })
 
