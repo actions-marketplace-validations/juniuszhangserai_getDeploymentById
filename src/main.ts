@@ -16,7 +16,7 @@ async function run(): Promise<void> {
     const request = await octokit.repos.listDeployments({
       ...context.repo,
       environment,
-      sha:sha
+      sha
     })
 
     const deployments = request.data
