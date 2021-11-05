@@ -74,7 +74,7 @@ async function listDeployments(reSha,owner,repo)
 
 async function getDeployments(envName)
 {
-  var deployments = await listDeployments(reSha);
+  var deployments = await listDeployments(reSha,owner,repo);
 
   for(i = 0 ;i < deployments.length;i++)
   {
