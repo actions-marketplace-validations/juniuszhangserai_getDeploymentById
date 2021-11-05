@@ -41,7 +41,7 @@ owner = core.getInput('owner');
 let repo = "";
 repo = core.getInput('repo');
 
-async function listDeployments(reSha) 
+async function listDeployments(reSha,owner,repo) 
 {
     // This should be a token with access to your repository scoped in as a secret.
   // The YML workflow will need to set myToken with the GitHub Secret Token
@@ -49,7 +49,7 @@ async function listDeployments(reSha)
   // https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#about-the-github_token-secret
   //const myToken = core.getInput('myToken');
 
-  const octokit = github.getOctokit(myToken,owner,repo)
+  const octokit = github.getOctokit(myToken)
 
   try
   {
