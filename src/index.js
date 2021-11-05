@@ -1,3 +1,8 @@
+// https://github.com/nodeca/js-yaml
+const yaml = require('js-yaml');
+const fs   = require('fs');
+
+
 const core = require('@actions/core');
 const github = require('@actions/github');
 
@@ -11,18 +16,18 @@ if (process.env.TOKEN)
 }
 else
 {
-   myToken = core.getInput('github_token');
+   myToken = core.getInput('github-token');
 }
 
-let reSha = "";
+let refToSearch = "";
 
-if (process.env.reSha)
+if (process.env.refToSearch)
 {
-  reSha = process.env.reSha;
+  refToSearch = process.env.refToSearch;
 }
 else
 {
-  reSha = core.getInput('github_sha');
+  refToSearch = core.getInput('ref-to-search');
 }
 
 let envName = "";
@@ -33,11 +38,11 @@ if (process.env.envName)
 }
 else
 {
-   envName = core.getInput('environment');
+   envName = core.getInput('env-name');
 }
 
 
-async function listDeployments(reSha) 
+async function listDeployments(refTag) 
 {
     // This should be a token with access to your repository scoped in as a secret.
   // The YML workflow will need to set myToken with the GitHub Secret Token
@@ -46,8 +51,6 @@ async function listDeployments(reSha)
   //const myToken = core.getInput('myToken');
 
   const octokit = github.getOctokit(myToken)
-  console.log(github.context.owner);
-  console.log(github.context.repo);
 
   try
   {
@@ -55,7 +58,7 @@ async function listDeployments(reSha)
     const { data: deployments } = await octokit.repos.listDeployments({
     owner: github.context.owner,
     repo: github.context.repo,
-    sha: reSha
+    ref: refTag
     })
 
     return deployments.reverse();
@@ -72,10 +75,10 @@ async function listDeployments(reSha)
 
 async function getDeployments(envName)
 {
-  var deployments = await listDeployments(reSha);
-
+  var deployments = await listDeployments(refToSearch);
   for(i = 0 ;i < deployments.length;i++)
   {
+    console.log(deployments[i]);
     if (deployments[i].environment == envName)
     {
         console.log('For environment ' + deployments[i].environment)
