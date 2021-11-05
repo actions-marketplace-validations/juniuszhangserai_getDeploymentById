@@ -5,13 +5,13 @@ branding:
   icon: 'package'
   color: 'blue'
 inputs:
-  github_token:
+  github-token:
     description: 'The GitHub token (if not provided the environment variable GITHUB_TOKEN will be used instead)'
     required: false
-  environment:
+  env-name:
     description: 'The environment name'
     required: true
-  github_sha:
+  ref-to-search:
     description: 'The commit id'
     required: false
 outputs:
