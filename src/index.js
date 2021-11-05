@@ -36,12 +36,8 @@ else
    envName = core.getInput('environment');
 }
 
-let owner = "";
-owner = core.getInput('owner');
-let repo = "";
-repo = core.getInput('repo');
 
-async function listDeployments(reSha,owner,repo) 
+async function listDeployments(reSha) 
 {
     // This should be a token with access to your repository scoped in as a secret.
   // The YML workflow will need to set myToken with the GitHub Secret Token
@@ -50,13 +46,15 @@ async function listDeployments(reSha,owner,repo)
   //const myToken = core.getInput('myToken');
 
   const octokit = github.getOctokit(myToken)
+  console.log(github.context.owner);
+  console.log(github.context.repo);
 
   try
   {
   //Check if milestone exists
     const { data: deployments } = await octokit.repos.listDeployments({
-    owner: owner,
-    repo: repo,
+    owner: github.context.owner,
+    repo: github.context.repo,
     sha: reSha
     })
 
@@ -74,7 +72,7 @@ async function listDeployments(reSha,owner,repo)
 
 async function getDeployments(envName)
 {
-  var deployments = await listDeployments(reSha,owner,repo);
+  var deployments = await listDeployments(reSha);
 
   for(i = 0 ;i < deployments.length;i++)
   {

@@ -14,12 +14,6 @@ inputs:
   github_sha:
     description: 'The commit id'
     required: false
-  owner:
-    description: 'The owner'
-    required: false
-  repo:
-    description: 'The repo'
-    required: false
 outputs:
   deployment_id:
     description: 'The deployment id'
