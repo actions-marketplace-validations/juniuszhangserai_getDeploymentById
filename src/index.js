@@ -11,7 +11,7 @@ if (process.env.TOKEN)
 }
 else
 {
-   myToken = core.getInput('github-token');
+   myToken = core.getInput('github_token');
 }
 
 let reSha = "";
@@ -33,7 +33,7 @@ if (process.env.envName)
 }
 else
 {
-   envName = core.getInput('env-name');
+   envName = core.getInput('environment');
 }
 
 
