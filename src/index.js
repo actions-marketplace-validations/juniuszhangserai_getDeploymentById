@@ -49,17 +49,19 @@ async function listDeployments(refTag)
   // myToken: ${{ secrets.GITHUB_TOKEN }}
   // https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#about-the-github_token-secret
   //const myToken = core.getInput('myToken');
-
+  console.log("try to get octokit");
   const octokit = github.getOctokit(myToken)
-
+  console.log(octokit);
   try
   {
   //Check if milestone exists
+    console.log("try to get deployment");
     const { data: deployments } = await octokit.repos.listDeployments({
     owner: github.context.owner,
     repo: github.context.repo,
     ref: refTag
     })
+    console.log(deployments);
 
     return deployments.reverse();
 
