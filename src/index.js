@@ -55,12 +55,12 @@ async function listDeployments(refTag)
   {
   //Check if milestone exists
     console.log("try to get deployment");
-    console.log(github.context.owner)
-    console.log(github.context.repo)
+    console.log(github.context.repo.owner)
+    console.log(github.context.repo.repo)
     console.log(github.context.refTag)
     const { data: deployments } = await octokit.repos.listDeployments({
-    owner: github.context.owner,
-    repo: github.context.repo,
+    owner: github.context.repo.owner,
+    repo: github.context.repo.repo,
     ref: refTag
     })
     console.log(deployments);
