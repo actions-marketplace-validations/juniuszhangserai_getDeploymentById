@@ -51,11 +51,13 @@ async function listDeployments(refTag)
   //const myToken = core.getInput('myToken');
   console.log("try to get octokit");
   const octokit = github.getOctokit(myToken)
-  console.log(octokit);
   try
   {
   //Check if milestone exists
     console.log("try to get deployment");
+    console.log(github.context.owner)
+    console.log(github.context.repo)
+    console.log(github.context.refTag)
     const { data: deployments } = await octokit.repos.listDeployments({
     owner: github.context.owner,
     repo: github.context.repo,
