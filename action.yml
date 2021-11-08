@@ -15,7 +15,7 @@ inputs:
     description: 'The commit id'
     required: false
 outputs:
-  deployment_id:
+  deploymentId:
     description: 'The deployment id'
 
 runs:
