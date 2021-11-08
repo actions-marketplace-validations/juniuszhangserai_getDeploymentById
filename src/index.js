@@ -62,7 +62,7 @@ async function listDeployments(refToSearch)
     const { data: deployments } = await octokit.repos.listDeployments({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
-    ref: refToSearch
+    sha: refToSearch
     })
     console.log(deployments);
 
