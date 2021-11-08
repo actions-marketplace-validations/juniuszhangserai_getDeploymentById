@@ -64,10 +64,7 @@ async function listDeployments(refToSearch)
     repo: github.context.repo.repo,
     sha: refToSearch
     })
-    console.log(deployments);
-
     return deployments.reverse();
-
   }
   catch(error) 
   {
@@ -83,7 +80,6 @@ async function getDeployments(envName)
   var deployments = await listDeployments(refToSearch);
   for(i = 0 ;i < deployments.length;i++)
   {
-    console.log(deployments[i]);
     if (deployments[i].environment == envName)
     {
         console.log('For environment ' + deployments[i].environment)
