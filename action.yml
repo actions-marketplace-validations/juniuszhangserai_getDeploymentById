@@ -1,6 +1,6 @@
-name: 'Get the Last Deployment'
+name: 'Get the Last Deployment By Commit Id'
 description: 'Get the Deployment by commit id'
-author: 'Serai'
+author: 'juniuszhangserai'
 branding:
   icon: 'package'
   color: 'blue'
